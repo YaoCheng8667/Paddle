@@ -67,7 +67,6 @@ PADDLE_DEFINE_EXPORTED_bool(
     "enable sharding stage step1 only param and grad split, default false");
 PADDLE_DEFINE_EXPORTED_string(
     padbox_dump_debug_lineid, "", "config dump debug lineid, default is empty");
-
 namespace paddle {
 namespace framework {
 BoxPSAsynDenseTable::BoxPSAsynDenseTable(const int device_num)
@@ -429,6 +428,7 @@ void BoxPSWorker::Initialize(const TrainerDesc& desc) {
             << ", dump thread num: " << dump_thread_num_;
   }
   VLOG(1) << "boxps_worker init device num: " << device_num_;
+
 }
   
 void BoxPSWorker::Finalize() {
@@ -1204,6 +1204,9 @@ void BoxPSWorker::CreateDeviceResource(const ProgramDesc& main_prog) {
           str_os << name << ",";
         }
         str_os << "]";
+      }
+      if (sync_points_.find(op.get()) != sync_points_.end()) {
+        str_os << ", sync point";
       }
       str_os << "\n";
     }

@@ -865,13 +865,11 @@ class BoxPSWorker : public DeviceWorker {
     // numel
     int64_t numel(void) { return data_tensor_->numel(); }
   };
-
   struct fd_info_t {
     int fd;
     size_t len;
     int fileid;
   };
-
  public:
   BoxPSWorker() {}
   ~BoxPSWorker() override {}
@@ -916,7 +914,6 @@ protected:
   virtual void DumpField(const Scope& scope,
                          int dump_mode,
                          int dump_interval = 10000);
-
  private:
   void OpenDump(const int &tid);
   void WriteDump(const int &tid, const std::string& buf);
@@ -962,7 +959,6 @@ protected:
   bool sharding_mode_ = false;
   // op extend
   std::unordered_set<const OperatorBase*> sync_points_;
-
   // dump file
   int dump_thread_num_ = 20;
   std::string dump_fields_path_ = "";

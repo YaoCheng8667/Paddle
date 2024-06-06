@@ -141,16 +141,16 @@ void BoxPSTrainer::InitDumpEnv() {
   // queue_ = paddle::framework::MakeChannel<std::string>();
   // // Only set dump channel on the last section
   // for (int i = 0; i < thread_num_; ++i) {
-    //   workers_[i]->SetChannelWriter(queue_.get());
+  //   workers_[i]->SetChannelWriter(queue_.get());
   // }
   // // TODO(hutuxian): should make it as a config
   // dump_futures_.clear();
   // auto pool = GetDumpThreadPool(dump_thread_num_);
   // for (int i = 0; i < dump_thread_num_; i++) {
-    //   dump_futures_.emplace_back(pool->Run([this, i]() { this->DumpWork(i); }));
+  //   dump_futures_.emplace_back(pool->Run([this, i]() { this->DumpWork(i); }));
   // }
   // VLOG(0) << "init dump write file thread num=" << dump_thread_num_;
-localfs_mkdir(dump_fields_path_);
+  localfs_mkdir(dump_fields_path_);
 }
 // final dump env
 void BoxPSTrainer::FinalizeDumpEnv() {
